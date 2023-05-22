@@ -2,7 +2,7 @@
 #include <string.h>
 
 int main(void) {
-  const int compra = 3;
+  const int compra = 10;
   char nome[10][10] = {0};
   char sexo[10] = {0};
   float valor_total[10] = {0};

@@ -1,5 +1,5 @@
 # supermercado
-Cadastrar 10 usuários(sem repetição dos mesmos) com sexo('f' ou 'm') e total da compra; Criação de menu.
+Cadastrar 10 usuários(sem repetição dos mesmos) com sexo('f' ou 'm') e total da compra; Criação de menu de funçõe.
 Este trabalho consiste em modelar e implementar um gerenciador de
 supermercado. Leia atentamente o enunciado do problema, identifique os
 elementos do sistema e cumpra as etapas abaixo.

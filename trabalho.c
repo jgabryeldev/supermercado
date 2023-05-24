@@ -3,10 +3,21 @@
 
 int main(void) {
   const int compra = 10;
-  char nome[10][10] = {0};
-  char sexo[10] = {0};
-  float valor_total[10] = {0};
+  char nome[10][10];
+  char sexo[10];
+  float valor_total[10];
   int comparacao = 0;
+  char clienteVerifica[1][10];
+  int pos = 0;
+  int retorna = 0;
+  float valor_ref=0;
+  int menores=0;
+  int maiores=0;
+  int mulheres=0;
+  float soma_homens=0;
+  float soma_valor_total=0;
+  float media=0;
+  float menor=0;
 
   for (int i = 0; i < compra; i++) {
     printf("\nInforme o nome:");
@@ -22,6 +33,7 @@ int main(void) {
     }
     printf("\nInforme o sexo:");
     scanf(" %c", &sexo[i]);
+    
     while (sexo[i] != 'f' && sexo[i] != 'm') {
       printf("\nErro: sexo invalido.");
       printf("\nInforme um sexo valido:");
@@ -29,6 +41,7 @@ int main(void) {
     }
     printf("\nInforme o valor total da compra:");
     scanf("%f", &valor_total[i]);
+    
     while (valor_total[i] < 0) {
       printf("\nErro: valor negativo.");
       printf("\nInforme um valor valido:");
@@ -36,7 +49,7 @@ int main(void) {
     }
     printf("\nCadastro realizado com sucesso.\n");
   }
-  // etapa 2
+  // etapa 2 -- menu
   int opc = 0;
   while (opc != 3) 
   {
@@ -44,12 +57,9 @@ int main(void) {
     printf("\n1.Verificar compras de um cliente");
     printf("\n2.Todas as compras Cadastradas");
     printf("\n3.Encerrar programa");
-    printf("\nOpcao: ");
+    printf("\nOpção: ");
       scanf("%d", &opc);
-    // etapa 3
-    char clienteVerifica[1][10];
-    int pos = 0;
-    int retorna = 0;
+    // etapa 3 -- informações de um cliente específico
     switch (opc) 
     {
       case 1:
@@ -68,7 +78,7 @@ int main(void) {
               pos = -1;
             }
         }
-        if (pos != -1) 
+        if (pos != -1)
         {
           printf("\nCompras do Cliente: %s", clienteVerifica);
           printf("\nSexo: %c", sexo[pos]);
@@ -76,26 +86,96 @@ int main(void) {
         } 
           else if (pos == -1) 
           {
-            printf("\nCliente nao localizado!");
+            printf("\nCliente não localizado!");
           }
-        while (retorna != 1 && retorna != 2) 
+        // retorno ao menu principal
+        while (retorna != 1 && retorna != 2)
         {
           printf("\n\n1.Retornar ao menu principal");
           printf("\n2.Encerrar o programa\n");
-          printf("Opcao: ");
+          printf("Opção: ");
           scanf("%d", &retorna);
         }
         switch (retorna) 
         {
           case 1:
+            continue;
             break;
           case 2:
             return 0;
             break;
           default:
-            printf("Opcao Invalida!!");
+            printf("Opção Inválida!!");
             break;
         }
+      //etapa 4 -- informações gerais do sistema
+      case 2:
+        printf("\nInforme um valor referencial: ");
+          scanf("%f", &valor_ref);
+        for(int i=0; i<compra; i++)
+          {
+            if(valor_ref<valor_total[i])
+            {
+              maiores=maiores+1;
+            }
+              else if(valor_ref>valor_total[i])
+              {
+                menores++;
+              }
+            if(sexo[i]=='f')
+            {
+              mulheres=mulheres+1;
+            }
+              else if(sexo[i] == 'm')
+              {
+                soma_homens+=valor_total[i];
+              }
+
+            soma_valor_total+=valor_total[i];
+
+            if(menor==0)
+              {
+                menor=valor_total[i];
+              }
+                else if(menor>valor_total[i])
+                {
+                  menor=valor_total[i];
+                }
+            if(i==compra-1)
+            {
+              media=soma_valor_total/compra;
+              printf("\nQuantidade de compras acima do valor: %i", maiores);
+              printf("\nQuantidade de compradora(s) mulher(es): %i", mulheres);
+              printf("\nTotal comprado pelos Homens: %2.f", soma_homens);
+              printf("\nValor total das compras: %2.f", soma_valor_total);
+              printf("\nValor médio das compras: %2.f", media);
+              printf("\nValor da compra mais barata: %2.f", menor);
+            }
+          }
+        // retorno ao menu principal
+        while (retorna != 1 && retorna != 2) 
+        {
+          printf("\n\n1.Retornar ao menu principal");
+          printf("\n2.Encerrar o programa\n");
+          printf("Opção: ");
+          scanf("%d", &retorna);
+        }
+        switch (retorna) 
+        {
+          case 1:
+            continue;
+            break;
+          case 2:
+            return 0;
+            break;
+          default:
+            printf("Opção Inválida!!");
+            break;
+        } 
+      //opcao 3 -- finaliza o programa
+      case 3:
+      return 0;
+      break;
     }
   }
   return 0;

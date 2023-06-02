@@ -22,12 +22,16 @@ int main(void) {
   for (int i = 0; i < compra; i++) {
     printf("\nInforme o nome:");
     scanf("%s", nomes[i]);
-    for (int j = 0; j < compra; j++) 
+    for (int j = 0; j < compra; j++)
     {
-      while (strcmp(nomes[i], nomes[j]) == 0 && i != j) {
+      printf("%d", j);
+      while (strcmp(nomes[i], nomes[j]) == 0 && i != j)
+      {
+        
         printf("\nErro: nome ja cadastrado.");
         printf("\nInforme outro nome:");
         scanf("%s", nomes[i]);
+        j=0;
       }
     }
     printf("\nInforme o sexo:");
